@@ -1,0 +1,23 @@
+[package]
+name = "aura_os_uefi"
+version = "0.2.0"
+edition = "2021"
+authors = ["AuraOS Architecture Team"]
+description = "AuraOS v2.0 - Bare-Metal UEFI Operating System & Autonomous MCP Agent"
+license = "GPL-3.0-or-later"
+
+[dependencies]
+# UEFI 裸机固件接口与全局分配器支持
+uefi = { version = "0.28", features = ["alloc", "global_allocator", "logger"] }
+# no_std 环境下的 Serde JSON 反序列化沙箱（必须关闭 default-features 以剥离 std）
+serde = { version = "1.0", default-features = false, features = ["derive", "alloc"] }
+serde_json = { version = "1.0", default-features = false, features = ["alloc"] }
+
+[profile.dev]
+panic = "abort"
+
+[profile.release]
+panic = "abort"
+opt-level = 3
+lto = true
+codegen-units = 1
