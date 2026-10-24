@@ -1,0 +1,11 @@
+# Rust 构建产物
+/target/
+*.efi
+*.img
+*.iso
+
+# IDE 与系统
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
